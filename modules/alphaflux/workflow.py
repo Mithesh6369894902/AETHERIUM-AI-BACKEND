@@ -14,8 +14,15 @@ def run_forecast(payload: dict):
     # ---------------- LOAD DATA ---------------- #
     df = yf.download(symbol, start=start, end=end)
 
-    if df.empty:
-        return {"error": "No stock data found"}
+  if df.empty:
+    return {
+        "signal": "N/A",
+        "confidence": 0,
+        "recent_avg": 0,
+        "future_avg": 0,
+        "historical": [],
+        "forecast": []
+    }
 
     df = df.reset_index()
     df["TimeIndex"] = np.arange(len(df))
