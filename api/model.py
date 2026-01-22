@@ -1,11 +1,12 @@
 from fastapi import APIRouter, Depends
 from auth import verify_api_key
 from logger import log
-from modules.infernodata.core import preprocess_data
+from modules.modelcraftx.core import run_benchmark
 
-router = APIRouter(prefix="/inferno", tags=["InfernoData"])
+router = APIRouter(prefix="/modelcraft", tags=["ModelCraft-X"])
 
-@router.post("/preprocess")
-def preprocess(data: list, dep=Depends(verify_api_key)):
-    log("InfernoData preprocessing called")
-    return preprocess_data(data)
+@router.post("/benchmark")
+def benchmark(payload: dict, dep=Depends(verify_api_key)):
+    log("ModelCraft-X benchmarking executed")
+    return run_benchmark(payload)
+
