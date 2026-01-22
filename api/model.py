@@ -7,6 +7,5 @@ router = APIRouter(prefix="/modelcraft", tags=["ModelCraft-X"])
 
 @router.post("/benchmark")
 def benchmark(payload: dict, dep=Depends(verify_api_key)):
-    log("ModelCraft-X benchmarking executed")
+    log("ModelCraft-X benchmark called")
     return run_benchmark(payload)
-
